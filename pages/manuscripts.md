@@ -1,10 +1,13 @@
 ---
 author: George McNinch
-date: 2024-04-25 09:43:21.029700728 EDT
+date: 2024-06-30 21:09:45.018698772 EDT
 title: Manuscripts
 ---
 
 # Manuscript summary
+
+   #. [Levi decompositions of linear algebraic groups and non-abelian cohomology (2024)](#levi-decompositions-of-linear-algebraic-groups-and-non-abelian-cohomology)
+      Preprint (2024).
 
    #. [Nilpotent elements and reductive subgroups over a local field (2021)](#nilpotent-elements-and-reductive-subgroups-over-a-local-field)
       Algebras and Representation Theory 24 (2021), pp. 1479-1522.
@@ -95,6 +98,31 @@ title: Manuscripts
 
 
 # Manuscript details
+
+## Levi decompositions of linear algebraic groups and non-abelian cohomology {#levi-decompositions-of-linear-algebraic-groups-and-non-abelian-cohomology}
+   **Citation:** Preprint (2024).
+   
+   
+   
+   
+   URLs: [[PDF]](/assets/manuscripts/cohomology-levi.pdf).
+   
+   **Abstract:**
+   Let $k$ be any field, and let $G$ be a linear algebraic group over $k$
+   for which the unipotent radical $U$ of $G$ is defined and split over
+   $k$.  Consider a finite, separable field extension $\ell$ of $k$ and
+   suppose that the group $G_\ell$ obtained by base-change has a *Levi
+   decomposition* (over $\ell$). We study the question previously
+   investigated in (McNinch 2013): does $G$ have a *Levi decomposition*
+   (over $k$)?
+   
+   Using non-abelian cohomology we give some condition under which this
+   question has an affirmative answer.  On the other hand, we provide
+   (another) example of a group $G$ as above which has no Levi
+   decomposition over $k$.
+   
+   
+   --------
 
 ## Nilpotent elements and reductive subgroups over a local field {#nilpotent-elements-and-reductive-subgroups-over-a-local-field}
    **Citation:** Algebras and Representation Theory 24 (2021), pp. 1479-1522.
