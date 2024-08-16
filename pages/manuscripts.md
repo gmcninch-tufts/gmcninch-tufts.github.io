@@ -1,6 +1,6 @@
 ---
 author: George McNinch
-date: 2024-08-16 17:24:53.886999425 EDT
+date: 2024-08-16 17:29:55.399665814 EDT
 title: Manuscripts
 ---
 
@@ -118,7 +118,7 @@ title: Manuscripts
    
    Using non-abelian cohomology we give some condition under which this
    question has an affirmative answer.  On the other hand, we provide
-   (another) example of a group $G$ as above which has no Levi
+   an(other) example of a group $G$ as above which has no Levi
    decomposition over $k$.
    
    
