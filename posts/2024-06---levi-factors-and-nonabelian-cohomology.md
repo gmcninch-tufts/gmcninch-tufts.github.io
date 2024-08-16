@@ -9,7 +9,9 @@ summary : |
   New preprint.
 ---
 
+
 [Find the PDF here](/pages/manuscripts.html#levi-decompositions-of-linear-algebraic-groups-and-non-abelian-cohomology)
+**updated [2024-08-16]**
 
 Abstract:
 
@@ -23,5 +25,5 @@ question previously investigated in (McNinch 2013): does $G$ have a
 
 Using non-abelian cohomology we give some condition under which this
 question has an affirmative answer.  On the other hand, we provide
-(another) example of a group $G$ as above which has no Levi
+an(other) example of a group $G$ as above which has no Levi
 decomposition over $k$.
