@@ -1,13 +1,13 @@
 ---
 author: George McNinch
-date: 2024-08-16 17:29:55.399665814 EDT
+date: 2024-08-26 12:50:56.448654498 EDT
 title: Manuscripts
 ---
 
 # Manuscript summary
 
    #. [Levi decompositions of linear algebraic groups and non-abelian cohomology (2024)](#levi-decompositions-of-linear-algebraic-groups-and-non-abelian-cohomology)
-      Submitted (2024).
+      To appear in: Pacific J. Math (Special issue in memory of Gary Seitz) (date accepted: 2024).
 
    #. [Nilpotent elements and reductive subgroups over a local field (2021)](#nilpotent-elements-and-reductive-subgroups-over-a-local-field)
       Algebras and Representation Theory 24 (2021), pp. 1479-1522.
@@ -100,7 +100,7 @@ title: Manuscripts
 # Manuscript details
 
 ## Levi decompositions of linear algebraic groups and non-abelian cohomology {#levi-decompositions-of-linear-algebraic-groups-and-non-abelian-cohomology}
-   **Citation:** Submitted (2024).
+   **Citation:** To appear in: Pacific J. Math (Special issue in memory of Gary Seitz) (date accepted: 2024).
    
    
    

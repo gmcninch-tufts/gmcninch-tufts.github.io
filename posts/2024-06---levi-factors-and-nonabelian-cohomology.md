@@ -5,10 +5,10 @@ tags    :
   - manuscripts
   - algebraic-groups
   - cohomology
-summary : |
-  New preprint.
+summary : 
 ---
 
+[2024-08-26] Accepted for publication in [Pacific J. Math.](https://msp.org/pjm/) *Special issue in memory of Gary Seitz*
 
 [Find the PDF here](/pages/manuscripts.html#levi-decompositions-of-linear-algebraic-groups-and-non-abelian-cohomology)
 **updated [2024-08-26]**
