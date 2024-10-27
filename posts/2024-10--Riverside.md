@@ -11,11 +11,11 @@ summary : |
 
 
 
-I attended the [American Math Society Sectional Meeting at California
-State University,
-Fresno](https://www.ams.org/meetings/sectional/2304_program.html).  I
-spoke in the [Special Session on Finite Groups, Their Representations,
-and Related
+I attended the [American Math Society Sectional Meeting at Univ
+California at
+Riveside](https://www.ams.org/meetings/sectional/2304_program.html).
+I spoke in the [Special Session on Finite Groups, Their
+Representations, and Related
 Structures](https://www.ams.org/meetings/sectional/2304_program_ss6.html#title)
 organized by Robert Boltje, Mandi Schaeffer Fry, Nariel Monteiro.
 
