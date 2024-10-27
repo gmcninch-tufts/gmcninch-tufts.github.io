@@ -1,9 +1,9 @@
 ---
-title   : Talk in special session "Levi decompositions of linear algebraic groups"
+title   : Talk in special session at UC Riverside on "Levi decompositions of linear algebraic groups"
 date    : 2024-10-27
 tags    :
   - reductive-groups
-  - nilpotent-orbits
+  - levi-factors
   - special-session
 summary : |
   I gave a talk in a special session in the 2024-10 AMS sectional meeting at UC Riverside 
