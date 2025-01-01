@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-11-26 Tue 07:42 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Formalization and “finite algebra”</title>
+<meta name="author" content="George J. McNinch" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<style type="text/css">
+html {
+font-family: Lato;
+}
+#postamble {
+background: lightgrey;
+color: green;
+}
+#outline-container-bibliography, #table-of-contents {
+margin: 20px 20px 20px 20px;
+padding: 10px 10px 10px 10px;
+color: navy;
+background: antiquewhite;
+}
+.theorem, .proposition, .lemma, .corollary, .remark, .definition  {
+background: lightsteelblue;
+padding: 10px 10px 10px 10px;
+margin: 5px 5px 5px 5px;
+}
+.theorem > p,
+.proposition > p,
+.lemma > p,
+.corollary > p,
+.remark > p,
+.definition > p {
+display: block;
+margin-left: 10px;
+margin-bottom: 20px;
+}
+
+.theorem:before{
+content:"Theorem: \00a0";
+font-weight:bold;
+font-variant: small-caps;
+}
+.abstract:before{
+content:"Abstract: \00a0";
+font-weight:bold;
+font-variant: small-caps;
+}
+.proposition:before{
+content:"Proposition: \00a0";
+font-weight:bold;
+font-variant: small-caps;
+}
+
+.lemma:before{
+content:"Lemma: \00a0";
+font-weight:bold;
+font-variant: small-caps;
+}
+
+.corollary:before{
+content:"Corollary: \00a0";
+font-weight:bold;
+font-variant: small-caps;
+}
+
+.remark:before{
+content:"Remark: \00a0";
+font-weight:bold;
+font-variant: small-caps;
+}
+
+.definition:before{
+content:"Definition: \00a0";
+font-weight:bold;
+font-variant: small-caps;
+}
+
+.proof{
+display:block;
+/* margin-left:10px; */
+margin-bottom:30px;
+font-style:normal;
+}
+.proof:before{
+content:"Proof: \00a0";
+float:left;
+font-weight:bold;
+font-variant: small-caps;
+}
+.proof:after{
+float:right;
+content:"\25FB";
+/* filled end-of-proof box is instead given by content:"\25FC"; */
+}
+</style>
+<div style="display: none"> \(
+
+%%--------------------------------------------------------------------------------
+\usepackage[sc]{mathpazo}          % Palatino with smallcaps as text font
+\usepackage{eulervm}               % Euler math
+
+\usepackage{mathrsfs}
+\usepackage{amscd}
+\usepackage[top=3cm,bottom=3cm,left=3cm,right=3cm]{geometry}
+
+
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{cleveref}
+
+\renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}#1}
+
+
+\numberwithin{equation}{section}
+
+\declaretheorem[numberwithin=section,Refname={Theorem,Theorems}]{theorem}
+\declaretheorem[sibling=theorem,name=Proposition,Refname={Proposition,Propositions}]{proposition}
+\declaretheorem[sibling=theorem,name=Corollary,Refname={Corollary,Corollaries}]{corollary}
+\declaretheorem[sibling=theorem,name=Lemma,Refname={Lemma,Lemmas}]{lemma}
+\declaretheorem[sibling=theorem,name=Remark,style=remark,Refname={Remark,Remarks}]{remark}
+\declaretheorem[sibling=theorem,name=Example,style=remark,Refname={Example,Examples}]{example}
+\declaretheorem[sibling=theorem,name=Definition,style=remark,Refname={Definition,Definitions}]{definition}
+
+%%--------------------------------------------------------------------------------
+
+% power series
+\newcommand{\pow}[1]{[ \hspace{-1.6pt} [ {#1} ] \hspace{-1.6pt} ]}
+\newcommand{\powfield}[1]{( \hspace{-1.6pt} ( {#1} ) \hspace{-1.6pt} )}
+
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Proj}{\operatorname{Proj}}
+
+\newcommand{\nr}{\operatorname{nr}}
+\newcommand{\Unr}{U_{\nr}}
+\newcommand{\Knr}{K_{\nr}}
+
+\newcommand{\G}{\mathbf{G}}
+\newcommand{\Mat}{\operatorname{Mat}}
+\newcommand{\Lie}{\operatorname{Lie}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\AAut}{\underline{\textbf{Aut}}}
+\newcommand{\Out}{\underline{\textbf{Out}}}
+\newcommand{\Gal}{\operatorname{Gal}}
+
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Int}{\operatorname{Int}}
+
+\newcommand{\OO}{\mathscr{O}}
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\C}{\mathscr{C}}
+\newcommand{\FF}{\mathscr{F}}
+\newcommand{\LF}{\mathcal{LF}}
+
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\X}{\mathscr{X}}
+
+\newcommand{\ff}{\mathfrak{f}}
+\newcommand{\pp}{\mathfrak{p}}
+
+\newcommand{\lie}[1]{\mathfrak{#1}}
+\newcommand{\glie}{\lie{g}}
+\newcommand{\gllie}{\lie{gl}}
+\newcommand{\clie}{\lie{c}}
+\newcommand{\hlie}{\lie{h}}
+\newcommand{\plie}{\lie{p}}
+\newcommand{\nlie}{\lie{n}}
+\newcommand{\mlie}{\lie{m}}
+\newcommand{\rlie}{\lie{r}}
+
+\newcommand{\alg}{\operatorname{alg}}
+\newcommand{\sep}{\operatorname{sep}}
+
+\newcommand{\Kalg}{K_{\alg}}
+\newcommand{\Lalg}{L_{\alg}}
+\newcommand{\Kun}{K_{\un}}
+\newcommand{\Lun}{L_{\un}}
+\newcommand{\Gun}{G_{/\Kun}}
+\newcommand{\Sun}{S_{\un}}
+\newcommand{\Aun}{\A_{\un}}
+\newcommand{\Fsep}{F_{\sep}}
+\newcommand{\Ksep}{K_{\sep}}
+\newcommand{\Lsep}{L_{\sep}}
+\newcommand{\Qalg}{\mathbf{Q}_{\alg}}
+\newcommand{\Fpalg}{\mathbf{F}_{p,\alg}}
+\newcommand{\ksep}{k_{\sep}}
+\newcommand{\kalg}{k_{\alg}}
+
+\newcommand{\mm}{\mathfrak{m}}
+\newcommand{\nn}{\mathfrak{n}}
+
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\parah}{\mathcal{P}}
+\newcommand{\qparah}{\mathcal{Q}}
+\newcommand{\parahun}{\mathcal{P}_{\un}}
+\newcommand{\PP}{\mathbf{P}}
+\renewcommand{\SS}{\mathscr{S}}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\Q}{\mathbf{Q}}
+
+%%--------------------------------------------------------------------------------
+\)</div>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Formalization and “finite algebra”</h1>
+<div id="outline-container-org5f9d42a" class="outline-2">
+<h2 id="org5f9d42a">Project Description</h2>
+<div class="outline-text-2" id="text-org5f9d42a">
+<p>
+In the field of pure mathematics, there is widening interest in the
+possibility of <i>formalizing</i> proofs of mathematical
+statements. The project will involve learning to use the <a href="https://leanprover-community.github.io/">Lean proof
+assistant</a> to formalize mathematics of <i>finite geometries</i>.
+</p>
+
+<p>
+The introduction to the book <a href="https://leanprover-community.github.io/mathematics_in_lean/index.html">Mathematics in Lean</a> (available online)
+describes formalization as follows:
+</p>
+
+<blockquote>
+<p>
+Formalization can be seen as a kind of computer programming: we will
+write mathematical definitions, theorems, and proofs in a regimented
+language, like a programming language, that Lean can understand. In
+return, Lean provides feedback and information, interprets
+expressions and guarantees that they are well-formed, and ultimately
+certifies the correctness of our proofs.
+</p>
+</blockquote>
+
+<p>
+For example, the following code (depending on the <a href="https://leanprover-community.github.io/mathlib4_docs/"><code>mathlib</code> library</a>)
+defines the notion of a left coset of a subgroup \(H\) in a group
+\(G\) and proves that if two cosets \(xH\) and \(yH\) are equal then
+\(x \in yH\).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">import Mathlib.Tactic
+
+variable {G : Type} [Group G]
+
+def leftCoset {G : Type} [Group G] (H : Subgroup G) (x:G): Set G := 
+  { y:G | ∃ h ∈ H , y = x*h }    
+
+lemma contain {H : Subgroup G} {x y : G} :
+  leftCoset H x = leftCoset H y → x ∈ leftCoset H y := by 
+    intro h
+    have hx : x ∈ leftCoset H x := by
+      use 1
+      constructor
+      · exact Subgroup.one_mem _
+      · group
+    rw [h] at hx
+    assumption
+</pre>
+</div>
+
+<p>
+Broadly speaking, the goal is to learn to <i>use formalization to
+develop mathematics</i>. Thus, we should first target results in a
+particular part of mathematics for formalization. Here, we’ll choose
+to study the algebra and geometry arising in the study of finite
+vector spaces (i.e. of finite dimensional vector spaces over finite
+fields). We'll hope to build on existing formalization already in
+place in <code>mathlib</code>. There should remain many interesting results to
+formalize in this setting: basic properties of finite projective and
+polar spaces, results about error-correcting codes, etc.
+</p>
+</div>
+</div>
+<div id="outline-container-org55715ab" class="outline-2">
+<h2 id="org55715ab">Desired Background</h2>
+<div class="outline-text-2" id="text-org55715ab">
+<p>
+A project participant should have some background in algebra
+(completion of an undergraduate course introducing groups, rings and
+fields should suffice).  Part of our time will be spent learning to
+use the formalization tools; this phase will probably be quicker for
+candidates having some familiarity with computer programming.
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>
