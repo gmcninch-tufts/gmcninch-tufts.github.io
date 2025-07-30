@@ -4,19 +4,22 @@ author: George McNinch
 ---
 
 
-:::::{.image-container-2col}
+:::::{.image-container-3col}
 [![ref2]](/assets/images/2014-George-Lancaster.jpg)
+
+[![ref0]](/assets/images/2025-05--Tufts-headshots--McNinch-George-5.jpg)
 
 [![ref1]](/assets/images/2019-Fall-Tufts-head-shots--McNinch2.jpg)
 :::::
 
+[ref0]: /assets/images/2025-05--Tufts-headshots--McNinch-George-5.jpg {.image}
 [ref1]: /assets/images/2019-Fall-Tufts-head-shots--McNinch2.jpg "" {.image}
 [ref2]: /assets/images/2014-George-Lancaster.jpg "" {.image}
 
-Info
-=======
+# Info
 
 + email: george.mcninch@tufts.edu
+
 + address:
   ```
   Department of Mathematics  
@@ -32,21 +35,20 @@ Info
 + [![orc-img] ORCID](https://orcid.org/0000-0003-0539-5665){itemprop="sameAs" content="https://orcid.org/0000-0003-0539-5665" href="https://orcid.org/0000-0003-0539-5665" target="orcid.widget" rel="me noopener noreferrer" style="vertical-align:top;"}
 
 
-Recent teaching info
-===========
+# Recent teaching info
 
-- In AY2022-2023 I will again teach Math 51 *Differential Equations*
-  in the Fall.
+- Spring 2025
+  - Math 146 - Algebra II
+  - Math 87 - Mathematical Modeling
 
-- In AY2021-2022 I taught Math 51 *Differential Equations* both Fall
-  and Spring term, and Math 135 *Real Analysis* in the Spring.
+- Fall 2024 I was on sabbatical
 
-- In AY2020-2021 I taught Math 87 *Mathematical Modeling*
-  (Fall) and Math 146 *Abstract Algebra II* (Spring).
+- Spring 2024 I taught:
+  - Math 190 - Topics in Algebra
+  - Math 87 - Mathematical Modeling
   
 
-Biographic Sketch
-======================
+# Biographic Sketch
 
 ::: {.quote}
 > George McNinch is a Professor in the [Department of Mathematics] at
