@@ -5,6 +5,8 @@ import           Hakyll
 import           Text.Pandoc
 --------------------------------------------------------------------------------
 
+import Text.Pandoc.Highlighting (Style, kate, haddock, breezeDark, styleToCss)
+
 
 mathjaxExtensions :: Extensions
 mathjaxExtensions = extensionsFromList 
@@ -23,8 +25,19 @@ writeMathjaxOptions = defaultHakyllWriterOptions
                 {
                     writerHTMLMathMethod = MathJax ""
                 }
-mathJaxAddedCompiler :: Compiler (Item String)
-mathJaxAddedCompiler = pandocCompilerWith readMathjaxOptions writeMathjaxOptions
+-- mathJaxAddedCompiler :: Compiler (Item String)
+-- mathJaxAddedCompiler = pandocCompilerWith readMathjaxOptions writeMathjaxOptions
+
+pandocCodeStyle :: Style
+pandocCodeStyle = breezeDark
+
+pandocCompiler' :: Compiler (Item String)
+pandocCompiler' =
+  pandocCompilerWith
+    readMathjaxOptions
+    writeMathjaxOptions
+      { writerHighlightStyle   = Just pandocCodeStyle
+      }
 
 
 
@@ -38,9 +51,16 @@ main = hakyllWith config $ do
         route   idRoute
         compile compressCssCompiler
 
+    create ["css/syntax.css"] $ do
+      route idRoute
+      compile $ do
+        makeItem $ styleToCss pandocCodeStyle
+  
+
     match "pages/*md" $ do
         route $ setExtension "html"
-        compile $ mathJaxAddedCompiler
+        compile $ pandocCompiler'
+        --compile $ mathJaxAddedCompiler
             >>= loadAndApplyTemplate "templates/page.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
@@ -64,7 +84,8 @@ main = hakyllWith config $ do
 
     match "posts/*" $ do
         route $ setExtension "html"
-        compile $ mathJaxAddedCompiler
+        compile $ pandocCompiler'        
+        -- compile $ mathJaxAddedCompiler
             >>= loadAndApplyTemplate "templates/post.html"    (postCtxWithTags tags)
             >>= loadAndApplyTemplate "templates/default.html" (postCtxWithTags tags)
             >>= relativizeUrls
