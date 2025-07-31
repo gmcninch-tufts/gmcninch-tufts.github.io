@@ -122,7 +122,7 @@ notation:100 lhs:100 "≃[" field:100 "," lhb:100 ","
   > every $x$ -- or symmetric  -- i.e. $β(x,y) = β(y,x)$ for all $x,y$.
 
   ``` haskell
-  theorem refl_is_alt_or_symm {β: BilinForm k V} (h: β₁.IsRefl) 
+  theorem refl_is_alt_or_symm {β: BilinForm k V} (h: β.IsRefl) 
     [FiniteDimensional k V] :
     β.IsAlt ∨ β.IsSymm := by sorry
   ```
