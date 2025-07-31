@@ -29,7 +29,8 @@ writeMathjaxOptions = defaultHakyllWriterOptions
 -- mathJaxAddedCompiler = pandocCompilerWith readMathjaxOptions writeMathjaxOptions
 
 pandocCodeStyle :: Style
-pandocCodeStyle = breezeDark
+--pandocCodeStyle = breezeDark
+pandocCodeStyle = kate
 
 pandocCompiler' :: Compiler (Item String)
 pandocCompiler' =

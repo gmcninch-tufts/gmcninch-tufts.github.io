@@ -4,6 +4,12 @@ html {
     font-family: Roboto, Arimo,  sans;
 }
 
+pre {
+    border: 1px solid red;
+    padding: 15px;
+    background-color: antiquewhite;
+}
+
 body {
   font-size: 1.6rem;
   /* color: #000; */
