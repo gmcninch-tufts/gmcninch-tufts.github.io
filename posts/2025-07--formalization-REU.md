@@ -44,8 +44,9 @@ open Module
 open LinearMap
 open LinearMap (BilinForm)
 
--- V₁ and V₂ are vector spaces over the field k 
-variable  {k V₁ V₂ :Type} [Field k] 
+--  V, V₁ and V₂ are vector spaces over the field k 
+variable  {k V V₁ V₂ :Type} [Field k] 
+  [AddCommGroup V] [Module k V]
   [AddCommGroup V₁] [Module k V₁]
   [AddCommGroup V₂] [Module k V₂]
 
@@ -69,7 +70,7 @@ notation:100 lhs:100 "≃[" field:100 "," lhb:100 ","
 
 - *isometries*
 
-  > if $(V_1,\beta_1)$ and $(V_2,\beta_2)$ are pairs consisting of a
+  > If $(V_1,\beta_1)$ and $(V_2,\beta_2)$ are pairs consisting of a
   > finite dimensional vector space together with a bilinear form, then
   > there is an isometry between $V_1$ and $V_2$ if and only if there
   > are bases $b_1$ of $V_1$ and $b_2$ of $V_2$ such that the matrix of
@@ -89,7 +90,7 @@ notation:100 lhs:100 "≃[" field:100 "," lhb:100 ","
 
 - *characterization of non-degenerate alternating forms*
 
-  > any two non-degenerate alternating bilinear forms on spaces of the
+  > Any two non-degenerate alternating bilinear forms on spaces of the
   > same dimension are equivalent.
 
 
@@ -108,13 +109,14 @@ notation:100 lhs:100 "≃[" field:100 "," lhb:100 ","
 - *characterization of reflexive forms*
    
   > A bilinear form $β$ is *reflexive* if $β(x,y) = 0 \Rightarrow
-  > β(y,x) = 0$ for every $x,y \in V$.  that any reflexive form is
-  > either alternating (i.e. $β(x,x) = 0$ for every $x$) or symmetric
-  > (i.e. $β(x,y) = β(y,x)$ for all $x,y$):
+  > β(y,x) = 0$ for every $x,y \in V$.
+  >
+  > Any reflexive form is either alternating -- i.e. $β(x,x) = 0$ for
+  > every $x$ -- or symmetric  -- i.e. $β(x,y) = β(y,x)$ for all $x,y$.
 
   ``` haskell
-  theorem refl_is_alt_or_symm {β: BilinForm k V₁} (h: β.IsRefl) 
-    [FiniteDimensional k V₁] :
+  theorem refl_is_alt_or_symm {β: BilinForm k V} (h: β₁.IsRefl) 
+    [FiniteDimensional k V] :
     β.IsAlt ∨ β.IsSymm := by sorry
   ```
 
