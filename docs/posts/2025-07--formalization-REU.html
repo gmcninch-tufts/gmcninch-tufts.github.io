@@ -77,11 +77,11 @@
     
     </div>    
     <section>
-        <p>I supervised a summer REU project in the <a href="https://sites.tufts.edu/verseimreu/">VERSIEM
+        <p>I supervised a summer REU project in the <a href="https://sites.tufts.edu/verseimreu/">VERSEIM
 REU</a> at Tufts University. The
-project aimed to learn about the use of the <a href="https://leanprover-community.github.io/">Lean proof-assistant / programming
-language</a> to formalize some
-statements in mathematics.</p>
+project aimed to learn about the use of the <a href="https://leanprover-community.github.io/">Lean proof-assistant /
+programming language</a> in
+formalizing mathematics, especially in the context of linear algebra.</p>
 <p>More precisely, we used tools found in
 <a href="https://github.com/leanprover-community/mathlib4/">mathlib</a>; here is
 how mathlib describes itself:</p>
@@ -90,13 +90,45 @@ how mathlib describes itself:</p>
 contains both programming infrastructure and mathematics, as well as
 tactics that use the former and allow to develop the latter.</p>
 </blockquote>
-<p>The full output of our work can be found in the <a href="https://github.com/gmcninch-tufts/VERSEIM-2025">project’s github
-repository</a>.</p>
-<p>Here are some examples of results formalized by the students during
-the summer program:</p>
+<p>The group’s work can be found in the <a href="https://github.com/gmcninch-tufts/VERSEIM-2025">project’s
+github repository</a>.</p>
+<p>Here I’m going to give examples of results formalized by the students
+during the summer program; (the actual proof(s) are elided here –
+that is what the statement <code>sorry</code> is all about; they can be found in
+the <a href="https://github.com/gmcninch-tufts/VERSEIM-2025">repo</a>).</p>
+<p>We spent much of the time formalizing statements in <em>linear algebra</em>,
+for example in the following setting:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Mathlib.Tactic</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>noncomputable section     </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>open <span class="dt">Module</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>open <span class="dt">LinearMap</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>open <span class="dt">LinearMap</span> (<span class="dt">BilinForm</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- V₁ and V₂ are vector spaces over the field k </span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>variable  {k <span class="dt">V</span>₁ <span class="dt">V</span>₂ <span class="op">:</span><span class="dt">Type</span>} [<span class="dt">Field</span> k] </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  [<span class="dt">AddCommGroup</span> <span class="dt">V</span>₁] [<span class="dt">Module</span> k <span class="dt">V</span>₁]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  [<span class="dt">AddCommGroup</span> <span class="dt">V</span>₂] [<span class="dt">Module</span> k <span class="dt">V</span>₂]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">-- an isometry between (V₁,β₁) and (V₂,β₂) is a linear equivalence</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- V₁ ≃ₗ[k] V₂ together with a proof that this equivalence is compatible </span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">-- with the given bilinear forms</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>structure <span class="dt">Isometries</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  (β₁<span class="op">:</span><span class="dt">BilinForm</span> k <span class="dt">V</span>₁) </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  (β₂<span class="op">:</span><span class="dt">BilinForm</span> k <span class="dt">V</span>₂)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    equiv <span class="op">:</span> <span class="dt">V</span>₁ ≃ₗ[k] <span class="dt">V</span>₂      <span class="co">-- the linear equivalence</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    compat <span class="op">:</span> ∀ (x y <span class="op">:</span> <span class="dt">V</span>₁),  <span class="co">-- the compatibility assertion</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>	  β₁ x y <span class="ot">=</span> β₂ (equiv x) (equiv y) </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">-- Notation so that `V₁ ≃[k,β₁,β₂] V₂` denotes `Isometries β₁ β₂` </span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>notation<span class="op">:</span><span class="dv">100</span> lhs<span class="op">:</span><span class="dv">100</span> <span class="st">&quot;≃[&quot;</span> field<span class="op">:</span><span class="dv">100</span> <span class="st">&quot;,&quot;</span> lhb<span class="op">:</span><span class="dv">100</span> <span class="st">&quot;,&quot;</span> </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  rhb<span class="op">:</span><span class="dv">100</span> <span class="st">&quot;]&quot;</span> rhs<span class="op">:</span><span class="dv">100</span> <span class="ot">=&gt;</span> </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Isometries</span> (k<span class="op">:=</span> field) (<span class="dt">V</span>₁ <span class="op">:=</span> lhs) (<span class="dt">V</span>₂ <span class="op">:=</span> rhs) lhb rhb</span></code></pre></div>
 <ul>
-<li><p>a formalized proof (see the theorem
-<code>equiv_via_matrices</code> below) of the following statement:</p>
+<li><p><em>isometries</em></p>
 <blockquote>
 <p>if <span class="math inline">\((V_1,\beta_1)\)</span> and <span class="math inline">\((V_2,\beta_2)\)</span> are pairs consisting of a
 finite dimensional vector space together with a bilinear form, then
@@ -105,55 +137,38 @@ are bases <span class="math inline">\(b_1\)</span> of <span class="math inline">
 <span class="math inline">\(\beta_1\)</span> with respect to <span class="math inline">\(b_1\)</span> is the same as the matrix of
 <span class="math inline">\(\beta_2\)</span> with respect to <span class="math inline">\(b_2\)</span>.</p>
 </blockquote>
-<p>Here is the formal statement that was proved (On this page, the
-actual proof(s) are elided – that is what the statement <code>sorry</code> is
-all about…)</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Mathlib.Tactic</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>open <span class="dt">Module</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>open <span class="dt">LinearMap</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>open <span class="dt">LinearMap</span> (<span class="dt">BilinForm</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>variable  {k <span class="dt">V</span>₁ <span class="dt">V</span>₂ <span class="op">:</span><span class="dt">Type</span>} [<span class="dt">Field</span> k] </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  [<span class="dt">AddCommGroup</span> <span class="dt">V</span>₁] [<span class="dt">Module</span> k <span class="dt">V</span>₁]</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  [<span class="dt">AddCommGroup</span> <span class="dt">V</span>₂] [<span class="dt">Module</span> k <span class="dt">V</span>₂]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>structure <span class="dt">Isometries</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  (β₁<span class="op">:</span><span class="dt">BilinForm</span> k <span class="dt">V</span>₁) </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  (β₂<span class="op">:</span><span class="dt">BilinForm</span> k <span class="dt">V</span>₂)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    equiv <span class="op">:</span> <span class="dt">V</span>₁ ≃ₗ[k] <span class="dt">V</span>₂</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    compat <span class="op">:</span> ∀ (x y <span class="op">:</span> <span class="dt">V</span>₁), β₁ x y <span class="ot">=</span> β₂ (equiv x) (equiv y) </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="op">/--</span> <span class="dt">Notation</span> so that <span class="ot">`V₁ ≃[k,β₁,β₂] V₂`</span> denotes </span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ot">`Isometries β₁ β₂`</span> <span class="op">-/</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>notation<span class="op">:</span><span class="dv">100</span> lhs<span class="op">:</span><span class="dv">100</span> <span class="st">&quot;≃[&quot;</span> field<span class="op">:</span><span class="dv">100</span> <span class="st">&quot;,&quot;</span> lhb<span class="op">:</span><span class="dv">100</span> <span class="st">&quot;,&quot;</span> </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  rhb<span class="op">:</span><span class="dv">100</span> <span class="st">&quot;]&quot;</span> rhs<span class="op">:</span><span class="dv">100</span> <span class="ot">=&gt;</span> </span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Isometries</span> (k<span class="op">:=</span> field) (<span class="dt">V</span>₁ <span class="op">:=</span> lhs) (<span class="dt">V</span>₂ <span class="op">:=</span> rhs) lhb rhb</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>theorem equiv_via_matrices {ι<span class="op">:</span><span class="dt">Type</span>} [<span class="dt">Fintype</span> ι] [<span class="dt">DecidableEq</span> ι]</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  (β₁ <span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁)   (β₂ <span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₂) </span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  (b₁ <span class="op">:</span> <span class="dt">Basis</span> ι k <span class="dt">V</span>₁)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span>  <span class="dt">Nonempty</span> (<span class="dt">V</span>₁ ≃[k,β₁,β₂] <span class="dt">V</span>₂)  ↔  ∃ b₂<span class="op">:</span><span class="dt">Basis</span> ι k <span class="dt">V</span>₂,</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    (BilinForm.toMatrix b₁ β₁) <span class="ot">=</span>  (BilinForm.toMatrix b₂ β₂) <span class="op">:=</span> by sorry</span></code></pre></div></li>
-<li><p>a formalized proof of the statement that any two non-degenerate
-alternating bilinear forms on spaces of the same dimension are
-equivalent.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>noncomputable def alternate_iso {<span class="dt">B</span>₁<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁} {<span class="dt">B</span>₂<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₂} </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  (balt₁<span class="op">:</span> <span class="dt">IsAlt</span> <span class="dt">B</span>₁) (balt₂<span class="op">:</span> <span class="dt">IsAlt</span> <span class="dt">B</span>₂)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  (hd₁<span class="op">:</span> <span class="dt">B</span>₁<span class="op">.</span><span class="dt">Nondegenerate</span>) (hd₂<span class="op">:</span> <span class="dt">B</span>₂<span class="op">.</span><span class="dt">Nondegenerate</span>) </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>₁] [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>₂]</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  (h<span class="op">:</span> Module.finrank k <span class="dt">V</span>₁ <span class="ot">=</span> Module.finrank k <span class="dt">V</span>₂) <span class="op">:</span> <span class="dt">V</span>₁ ≃[k,<span class="dt">B</span>₁,<span class="dt">B</span>₂] <span class="dt">V</span>₂ <span class="op">:=</span> by </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  sorry</span></code></pre></div></li>
-<li><p>A bilinear form <span class="math inline">\(β\)</span> is <em>reflexive</em> if <span class="math inline">\(β(x,y) = 0 \Rightarrow β(y,x) = 0\)</span> for every <span class="math inline">\(x,y \in V\)</span>. that
-any reflexive form is either alternating (i.e. <span class="math inline">\(β(x,x) = 0\)</span> for
-every <span class="math inline">\(x\)</span>) or symmetric (i.e. <span class="math inline">\(β(x,y) = β(y,x)\)</span> for all <span class="math inline">\(x,y\)</span>):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>theorem refl_is_alt_or_symm {<span class="dt">B</span><span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁} (h<span class="op">:</span> <span class="dt">B.IsRefl</span>) </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>₁] <span class="op">:</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">B.IsAlt</span> ∨ <span class="dt">B.IsSymm</span> <span class="op">:=</span> by sorry</span></code></pre></div></li>
-<li><p>Finally, there is also a formalized proof of the Cassels-Pfister
-Theorem (see Elman, Karpenko &amp; Merkurjev, “The algebraic and
-geometric theory of quadratic forms” Theorem 17.3). This can be
+<p>Here is the formal statement:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>theorem equiv_via_matrices {ι<span class="op">:</span><span class="dt">Type</span>} [<span class="dt">Fintype</span> ι] [<span class="dt">DecidableEq</span> ι]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  (β₁ <span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁)   (β₂ <span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₂) </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  (b₁ <span class="op">:</span> <span class="dt">Basis</span> ι k <span class="dt">V</span>₁)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span>  <span class="dt">Nonempty</span> (<span class="dt">V</span>₁ ≃[k,β₁,β₂] <span class="dt">V</span>₂)  ↔  ∃ b₂<span class="op">:</span><span class="dt">Basis</span> ι k <span class="dt">V</span>₂,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    (BilinForm.toMatrix b₁ β₁) <span class="ot">=</span>  (BilinForm.toMatrix b₂ β₂) <span class="op">:=</span> by sorry</span></code></pre></div></li>
+<li><p><em>characterization of non-degenerate alternating forms</em></p>
+<blockquote>
+<p>any two non-degenerate alternating bilinear forms on spaces of the
+same dimension are equivalent.</p>
+</blockquote>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>def alternate_iso </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">B</span>₁<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁} {<span class="dt">B</span>₂<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₂} </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  (balt₁<span class="op">:</span> <span class="dt">IsAlt</span> <span class="dt">B</span>₁) (balt₂<span class="op">:</span> <span class="dt">IsAlt</span> <span class="dt">B</span>₂)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  (hd₁<span class="op">:</span> <span class="dt">B</span>₁<span class="op">.</span><span class="dt">Nondegenerate</span>) (hd₂<span class="op">:</span> <span class="dt">B</span>₂<span class="op">.</span><span class="dt">Nondegenerate</span>) </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>₁] [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>₂]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  (h<span class="op">:</span> Module.finrank k <span class="dt">V</span>₁ <span class="ot">=</span> Module.finrank k <span class="dt">V</span>₂) <span class="op">:</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">V</span>₁ ≃[k,<span class="dt">B</span>₁,<span class="dt">B</span>₂] <span class="dt">V</span>₂ <span class="op">:=</span> by </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  sorry</span></code></pre></div></li>
+<li><p><em>characterization of reflexive forms</em></p>
+<blockquote>
+<p>A bilinear form <span class="math inline">\(β\)</span> is <em>reflexive</em> if <span class="math inline">\(β(x,y) = 0 \Rightarrow β(y,x) = 0\)</span> for every <span class="math inline">\(x,y \in V\)</span>. that any reflexive form is
+either alternating (i.e. <span class="math inline">\(β(x,x) = 0\)</span> for every <span class="math inline">\(x\)</span>) or symmetric
+(i.e. <span class="math inline">\(β(x,y) = β(y,x)\)</span> for all <span class="math inline">\(x,y\)</span>):</p>
+</blockquote>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>theorem refl_is_alt_or_symm {<span class="dt">B</span><span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁} (h<span class="op">:</span> <span class="dt">B.IsRefl</span>) </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>₁] <span class="op">:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">B.IsAlt</span> ∨ <span class="dt">B.IsSymm</span> <span class="op">:=</span> by sorry</span></code></pre></div></li>
+<li><p><em>Cassels-Pfister Theorem</em></p>
+<p>Finally, there is also a formalized proof of the Cassels-Pfister
+Theorem (see [Elman, Karpenko &amp; Merkurjev, “The algebraic and
+geometric theory of quadratic forms”, Theorem 17.3]). This can be
 found in <a href="https://github.com/gmcninch-tufts/VERSEIM-2025/tree/main/VERSEIM2025/Forms/RationalFunctionFields">the repository,
 here</a>.</p></li>
 </ul>
