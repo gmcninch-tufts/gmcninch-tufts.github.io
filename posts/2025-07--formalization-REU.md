@@ -95,12 +95,12 @@ notation:100 lhs:100 "≃[" field:100 "," lhb:100 ","
 
   ``` haskell
   def alternate_iso 
-    {B₁: BilinForm k V₁} {B₂: BilinForm k V₂} 
-    (balt₁: IsAlt B₁) (balt₂: IsAlt B₂)
-    (hd₁: B₁.Nondegenerate) (hd₂: B₂.Nondegenerate) 
+    {β₁: BilinForm k V₁} {β₂: BilinForm k V₂} 
+    (balt₁: IsAlt β₁) (balt₂: IsAlt β₂)
+    (hd₁: β₁.Nondegenerate) (hd₂: β₂.Nondegenerate) 
     [FiniteDimensional k V₁] [FiniteDimensional k V₂]
     (h: Module.finrank k V₁ = Module.finrank k V₂) : 
-	V₁ ≃[k,B₁,B₂] V₂ := by 
+	V₁ ≃[k,β₁,β₂] V₂ := by 
     sorry
   
   ```
@@ -113,9 +113,9 @@ notation:100 lhs:100 "≃[" field:100 "," lhb:100 ","
   > (i.e. $β(x,y) = β(y,x)$ for all $x,y$):
 
   ``` haskell
-  theorem refl_is_alt_or_symm {B: BilinForm k V₁} (h: B.IsRefl) 
+  theorem refl_is_alt_or_symm {β: BilinForm k V₁} (h: β.IsRefl) 
     [FiniteDimensional k V₁] :
-    B.IsAlt ∨ B.IsSymm := by sorry
+    β.IsAlt ∨ β.IsSymm := by sorry
   ```
 
 - *Cassels-Pfister Theorem*

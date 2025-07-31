@@ -149,12 +149,12 @@ are bases <span class="math inline">\(b_1\)</span> of <span class="math inline">
 same dimension are equivalent.</p>
 </blockquote>
 <div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>def alternate_iso </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">B</span>₁<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁} {<span class="dt">B</span>₂<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₂} </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  (balt₁<span class="op">:</span> <span class="dt">IsAlt</span> <span class="dt">B</span>₁) (balt₂<span class="op">:</span> <span class="dt">IsAlt</span> <span class="dt">B</span>₂)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  (hd₁<span class="op">:</span> <span class="dt">B</span>₁<span class="op">.</span><span class="dt">Nondegenerate</span>) (hd₂<span class="op">:</span> <span class="dt">B</span>₂<span class="op">.</span><span class="dt">Nondegenerate</span>) </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  {β₁<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁} {β₂<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₂} </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  (balt₁<span class="op">:</span> <span class="dt">IsAlt</span> β₁) (balt₂<span class="op">:</span> <span class="dt">IsAlt</span> β₂)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  (hd₁<span class="op">:</span> β₁<span class="op">.</span><span class="dt">Nondegenerate</span>) (hd₂<span class="op">:</span> β₂<span class="op">.</span><span class="dt">Nondegenerate</span>) </span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>₁] [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>₂]</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  (h<span class="op">:</span> Module.finrank k <span class="dt">V</span>₁ <span class="ot">=</span> Module.finrank k <span class="dt">V</span>₂) <span class="op">:</span> </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">V</span>₁ ≃[k,<span class="dt">B</span>₁,<span class="dt">B</span>₂] <span class="dt">V</span>₂ <span class="op">:=</span> by </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">V</span>₁ ≃[k,β₁,β₂] <span class="dt">V</span>₂ <span class="op">:=</span> by </span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  sorry</span></code></pre></div></li>
 <li><p><em>characterization of reflexive forms</em></p>
 <blockquote>
@@ -162,9 +162,9 @@ same dimension are equivalent.</p>
 either alternating (i.e. <span class="math inline">\(β(x,x) = 0\)</span> for every <span class="math inline">\(x\)</span>) or symmetric
 (i.e. <span class="math inline">\(β(x,y) = β(y,x)\)</span> for all <span class="math inline">\(x,y\)</span>):</p>
 </blockquote>
-<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>theorem refl_is_alt_or_symm {<span class="dt">B</span><span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁} (h<span class="op">:</span> <span class="dt">B.IsRefl</span>) </span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>theorem refl_is_alt_or_symm {β<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁} (h<span class="op">:</span> β<span class="op">.</span><span class="dt">IsRefl</span>) </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>₁] <span class="op">:</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">B.IsAlt</span> ∨ <span class="dt">B.IsSymm</span> <span class="op">:=</span> by sorry</span></code></pre></div></li>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  β<span class="op">.</span><span class="dt">IsAlt</span> ∨ β<span class="op">.</span><span class="dt">IsSymm</span> <span class="op">:=</span> by sorry</span></code></pre></div></li>
 <li><p><em>Cassels-Pfister Theorem</em></p>
 <p>Finally, there is also a formalized proof of the Cassels-Pfister
 Theorem (see [Elman, Karpenko &amp; Merkurjev, “The algebraic and
