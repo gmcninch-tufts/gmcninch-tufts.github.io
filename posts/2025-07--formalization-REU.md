@@ -68,7 +68,7 @@ notation:100 lhs:100 "≃[" field:100 "," lhb:100 ","
   Isometries (k:= field) (V₁ := lhs) (V₂ := rhs) lhb rhb
 ```
 
-- *isometries*
+- *isometries via bases*
 
   > If $(V_1,\beta_1)$ and $(V_2,\beta_2)$ are pairs consisting of a
   > finite dimensional vector space together with a bilinear form, then
