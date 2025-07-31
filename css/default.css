@@ -255,3 +255,11 @@ footer nav {
 }
 
 sourceCode { padding: 4mm; }
+
+.small-image {
+    height: 100px;
+}
+
+.med-image {
+    height: 250px;
+}
