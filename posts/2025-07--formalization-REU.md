@@ -51,7 +51,7 @@ variable  {k V₁ V₂ :Type} [Field k]
   [AddCommGroup V₁] [Module k V₁]
   [AddCommGroup V₂] [Module k V₂]
 
-structure equiv_of_spaces_with_form
+structure Isometries
   (β₁:BilinForm k V₁) 
   (β₂:BilinForm k V₂)
   where
@@ -59,7 +59,7 @@ structure equiv_of_spaces_with_form
     compat : ∀ (x y : V₁), β₁ x y = β₂ (equiv v₁) (equiv v₂) 
 
 notation:100 lhs:100 "≃[" field:100 "," lhb:100 "," rhb:100 "]" rhs:100 => 
-  equiv_of_spaces_with_form (k:= field) (V₁ := lhs) (V₂ := rhs) lhb rhb
+  Isometries (k:= field) (V₁ := lhs) (V₂ := rhs) lhb rhb
 
 theorem equiv_via_matrices {ι:Type} [Fintype ι] [DecidableEq ι]
   (β₁ : BilinForm k V₁)   (β₂ : BilinForm k V₂) 
@@ -74,7 +74,7 @@ non-degenerate alternating bilinear forms on spaces of the same
 dimension are equivalent.
 
 ``` haskell
-noncomputable def alternate_iso {B₁: BilinForm k V₁} (B₂: BilinForm k V₂) 
+noncomputable def alternate_iso {B₁: BilinForm k V₁} {B₂: BilinForm k V₂} 
   (balt₁: IsAlt B₁) (balt₂: IsAlt B₂)
   (hd₁: B₁.Nondegenerate) (hd₂: B₂.Nondegenerate) 
   [FiniteDimensional k V₁] [FiniteDimensional k V₂]
