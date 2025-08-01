@@ -18,6 +18,8 @@ REU](https://sites.tufts.edu/verseimreu/) at Tufts University.
 
 [ref0]: /assets/images/2025-07-31--formalization-REU-01.jpg {.med-image}
 
+Participants: Clea Bergsman, Katherine Buesing, Sahan Wijetunga.
+
 The project aimed to learn about the use of the [Lean proof-assistant
 / programming language](https://leanprover-community.github.io/) in
 formalizing mathematics, especially in the context of linear algebra.
@@ -36,8 +38,8 @@ github repository](https://github.com/gmcninch-tufts/VERSEIM-2025).
 
 Here I'm going to give examples of results formalized by the students
 during the summer program; (the actual proof(s) are elided here --
-that is what the statement `sorry` is all about; they can be found in
-the [repo](https://github.com/gmcninch-tufts/VERSEIM-2025)).
+that is what the statement `sorry` is all about -- but can be found
+in the [repo](https://github.com/gmcninch-tufts/VERSEIM-2025)).
 
 We spent much of the time formalizing statements in *linear algebra*,
 for example in the following setting:
@@ -131,6 +133,6 @@ notation:100 lhs:100 "≃[" field:100 "," lhb:100 ","
 
   Finally, there is also a formalized proof of the Cassels-Pfister
   Theorem (see [Elman, Karpenko & Merkurjev, "The algebraic and
-  geometric theory of quadratic forms", Theorem 17.3]). This can be
+  geometric theory of quadratic forms", Theorem 17.3]) which can be
   found in [the repository,
   here](https://github.com/gmcninch-tufts/VERSEIM-2025/tree/main/VERSEIM2025/Forms/RationalFunctionFields).
