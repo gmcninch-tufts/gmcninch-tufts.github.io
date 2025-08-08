@@ -90,10 +90,10 @@ notation:100 lhs:100 "≃[" field:100 "," lhb:100 ","
 
   ``` haskell
   theorem equiv_via_matrices {ι:Type} [Fintype ι] [DecidableEq ι]
-    (β₁ : BilinForm k V₁)   (β₂ : BilinForm k V₂) 
-    (b₁ : Basis ι k V₁)
-    :  Nonempty (V₁ ≃[k,β₁,β₂] V₂)  ↔  ∃ b₂:Basis ι k V₂,
-      (BilinForm.toMatrix b₁ β₁) =  (BilinForm.toMatrix b₂ β₂) := by sorry
+      (β₁ : BilinForm k V₁)   (β₂ : BilinForm k V₂) 
+      (b₁ : Basis ι k V₁) :
+    Nonempty (V₁ ≃[k,β₁,β₂] V₂)  ↔  ∃ b₂:Basis ι k V₂,
+	(BilinForm.toMatrix b₁ β₁) =  (BilinForm.toMatrix b₂ β₂) := by sorry
 
   ```
 
@@ -105,11 +105,11 @@ notation:100 lhs:100 "≃[" field:100 "," lhb:100 ","
 
   ``` haskell
   def alternate_iso 
-    {β₁: BilinForm k V₁} {β₂: BilinForm k V₂} 
-    (balt₁: IsAlt β₁) (balt₂: IsAlt β₂)
-    (hd₁: β₁.Nondegenerate) (hd₂: β₂.Nondegenerate) 
-    [FiniteDimensional k V₁] [FiniteDimensional k V₂]
-    (h: Module.finrank k V₁ = Module.finrank k V₂) : 
+      {β₁: BilinForm k V₁} {β₂: BilinForm k V₂} 
+      (balt₁: IsAlt β₁) (balt₂: IsAlt β₂)
+      (hd₁: β₁.Nondegenerate) (hd₂: β₂.Nondegenerate) 
+      [FiniteDimensional k V₁] [FiniteDimensional k V₂]
+      (h: Module.finrank k V₁ = Module.finrank k V₂) : 
 	V₁ ≃[k,β₁,β₂] V₂ := by 
     sorry
   
@@ -125,14 +125,28 @@ notation:100 lhs:100 "≃[" field:100 "," lhb:100 ","
 
   ``` haskell
   theorem refl_is_alt_or_symm {β: BilinForm k V} (h: β.IsRefl) 
-    [FiniteDimensional k V] :
+      [FiniteDimensional k V] :
     β.IsAlt ∨ β.IsSymm := by sorry
   ```
 
 - *Cassels-Pfister Theorem*
+  
+  > Let $\phi$ be a quadratic form on the vector space $V$ and let $f
+  > \in k[X]$. If there is a vector $v \in V \otimes_k k(X)$ such that
+  > $\phi(v) = f$ then there is a vector $w \in V \otimes_k k[X]$ such that
+  > $\phi(w) = f$.
 
-  Finally, there is also a formalized proof of the Cassels-Pfister
-  Theorem (see [Elman, Karpenko & Merkurjev, "The algebraic and
-  geometric theory of quadratic forms", Theorem 17.3]) which can be
-  found in [the repository,
+  (see [Elman, Karpenko & Merkurjev, "The algebraic and
+  geometric theory of quadratic forms", Theorem 17.3]).
+
+  ``` haskell
+  open Polynomial -- so we can write k[X] for `Polynomial k`
+  
+  theorem cassels_pfister (φ : QuadraticForm k V) [Invertible (2 : k)]
+      (f : k[X]) (v : TensorProduct k (RatFunc k) V) 
+      (h : φ.baseChange (RatFunc k) v = f) :
+    ∃ (w : TensorProduct k k[X] V), φ.baseChange k[X] w = f := by sorry
+  ```
+  
+  A formalized proof can be found in [the repository,
   here](https://github.com/gmcninch-tufts/VERSEIM-2025/tree/main/VERSEIM2025/Forms/RationalFunctionFields).

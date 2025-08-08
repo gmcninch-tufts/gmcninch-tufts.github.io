@@ -144,21 +144,21 @@ are bases <span class="math inline">\(b_1\)</span> of <span class="math inline">
 </blockquote>
 <p>Here is the formal statement:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>theorem equiv_via_matrices {ι<span class="op">:</span><span class="dt">Type</span>} [<span class="dt">Fintype</span> ι] [<span class="dt">DecidableEq</span> ι]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  (β₁ <span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁)   (β₂ <span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₂) </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  (b₁ <span class="op">:</span> <span class="dt">Basis</span> ι k <span class="dt">V</span>₁)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span>  <span class="dt">Nonempty</span> (<span class="dt">V</span>₁ ≃[k,β₁,β₂] <span class="dt">V</span>₂)  ↔  ∃ b₂<span class="op">:</span><span class="dt">Basis</span> ι k <span class="dt">V</span>₂,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    (BilinForm.toMatrix b₁ β₁) <span class="ot">=</span>  (BilinForm.toMatrix b₂ β₂) <span class="op">:=</span> by sorry</span></code></pre></div></li>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    (β₁ <span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁)   (β₂ <span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₂) </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    (b₁ <span class="op">:</span> <span class="dt">Basis</span> ι k <span class="dt">V</span>₁) <span class="op">:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Nonempty</span> (<span class="dt">V</span>₁ ≃[k,β₁,β₂] <span class="dt">V</span>₂)  ↔  ∃ b₂<span class="op">:</span><span class="dt">Basis</span> ι k <span class="dt">V</span>₂,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  (BilinForm.toMatrix b₁ β₁) <span class="ot">=</span>  (BilinForm.toMatrix b₂ β₂) <span class="op">:=</span> by sorry</span></code></pre></div></li>
 <li><p><em>characterization of non-degenerate alternating forms</em></p>
 <blockquote>
 <p>Any two non-degenerate alternating bilinear forms on spaces of the
 same dimension are equivalent.</p>
 </blockquote>
 <div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>def alternate_iso </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  {β₁<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁} {β₂<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₂} </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  (balt₁<span class="op">:</span> <span class="dt">IsAlt</span> β₁) (balt₂<span class="op">:</span> <span class="dt">IsAlt</span> β₂)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  (hd₁<span class="op">:</span> β₁<span class="op">.</span><span class="dt">Nondegenerate</span>) (hd₂<span class="op">:</span> β₂<span class="op">.</span><span class="dt">Nondegenerate</span>) </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>₁] [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>₂]</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  (h<span class="op">:</span> Module.finrank k <span class="dt">V</span>₁ <span class="ot">=</span> Module.finrank k <span class="dt">V</span>₂) <span class="op">:</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    {β₁<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₁} {β₂<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>₂} </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    (balt₁<span class="op">:</span> <span class="dt">IsAlt</span> β₁) (balt₂<span class="op">:</span> <span class="dt">IsAlt</span> β₂)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    (hd₁<span class="op">:</span> β₁<span class="op">.</span><span class="dt">Nondegenerate</span>) (hd₂<span class="op">:</span> β₂<span class="op">.</span><span class="dt">Nondegenerate</span>) </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>₁] [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>₂]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    (h<span class="op">:</span> Module.finrank k <span class="dt">V</span>₁ <span class="ot">=</span> Module.finrank k <span class="dt">V</span>₂) <span class="op">:</span> </span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">V</span>₁ ≃[k,β₁,β₂] <span class="dt">V</span>₂ <span class="op">:=</span> by </span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  sorry</span></code></pre></div></li>
 <li><p><em>characterization of reflexive forms</em></p>
@@ -168,13 +168,23 @@ same dimension are equivalent.</p>
 every <span class="math inline">\(x\)</span> – or symmetric – i.e. <span class="math inline">\(β(x,y) = β(y,x)\)</span> for all <span class="math inline">\(x,y\)</span>.</p>
 </blockquote>
 <div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>theorem refl_is_alt_or_symm {β<span class="op">:</span> <span class="dt">BilinForm</span> k <span class="dt">V</span>} (h<span class="op">:</span> β<span class="op">.</span><span class="dt">IsRefl</span>) </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>] <span class="op">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    [<span class="dt">FiniteDimensional</span> k <span class="dt">V</span>] <span class="op">:</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  β<span class="op">.</span><span class="dt">IsAlt</span> ∨ β<span class="op">.</span><span class="dt">IsSymm</span> <span class="op">:=</span> by sorry</span></code></pre></div></li>
 <li><p><em>Cassels-Pfister Theorem</em></p>
-<p>Finally, there is also a formalized proof of the Cassels-Pfister
-Theorem (see [Elman, Karpenko &amp; Merkurjev, “The algebraic and
-geometric theory of quadratic forms”, Theorem 17.3]) which can be
-found in <a href="https://github.com/gmcninch-tufts/VERSEIM-2025/tree/main/VERSEIM2025/Forms/RationalFunctionFields">the repository,
+<blockquote>
+<p>Let <span class="math inline">\(\phi\)</span> be a quadratic form on the vector space <span class="math inline">\(V\)</span> and let <span class="math inline">\(f \in k[X]\)</span>. If there is a vector <span class="math inline">\(v \in V \otimes_k k(X)\)</span> such that
+<span class="math inline">\(\phi(v) = f\)</span> then there is a vector <span class="math inline">\(w \in V \otimes_k k[X]\)</span> such that
+<span class="math inline">\(\phi(w) = f\)</span>.</p>
+</blockquote>
+<p>(see [Elman, Karpenko &amp; Merkurjev, “The algebraic and
+geometric theory of quadratic forms”, Theorem 17.3]).</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>open <span class="dt">Polynomial</span> <span class="co">-- so we can write k[X] for `Polynomial k`</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>theorem cassels_pfister (φ <span class="op">:</span> <span class="dt">QuadraticForm</span> k <span class="dt">V</span>) [<span class="dt">Invertible</span> (<span class="dv">2</span> <span class="op">:</span> k)]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    (f <span class="op">:</span> k[<span class="dt">X</span>]) (v <span class="op">:</span> <span class="dt">TensorProduct</span> k (<span class="dt">RatFunc</span> k) <span class="dt">V</span>) </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    (h <span class="op">:</span> φ<span class="op">.</span>baseChange (<span class="dt">RatFunc</span> k) v <span class="ot">=</span> f) <span class="op">:</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  ∃ (w <span class="op">:</span> <span class="dt">TensorProduct</span> k k[<span class="dt">X</span>] <span class="dt">V</span>), φ<span class="op">.</span>baseChange k[<span class="dt">X</span>] w <span class="ot">=</span> f <span class="op">:=</span> by sorry</span></code></pre></div>
+<p>A formalized proof can be found in <a href="https://github.com/gmcninch-tufts/VERSEIM-2025/tree/main/VERSEIM2025/Forms/RationalFunctionFields">the repository,
 here</a>.</p></li>
 </ul>
     </section>
