@@ -1,5 +1,5 @@
 ---
-title: Pages for my fall courses
+title: Course pages Fall 2025
 date: 2025-08-11
 tags:
  - course

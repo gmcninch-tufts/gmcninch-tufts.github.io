@@ -1,5 +1,5 @@
 ---
-title   : Courses I'm teaching Spring 2024
+title   : Courses Spring 2024
 date    : 2023-10-23
 tags    :
   - courses

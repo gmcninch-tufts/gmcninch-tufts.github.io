@@ -1,11 +1,11 @@
 ---
-title: Pages for my spring courses
+title: Course pages Spring 2025
 date: 2025-01-01
 tags:
  - course
  - topics
 summary: |
-  Links for my two course web-pages Spring semesters 2024.
+  Links for my two course web-pages Spring semesters 2025.
 ---
 While I'll still use [`Canvas`](https://canvas.tufts.edu) to some
 extent, I plan to post most of the /content/ of my courses this spring
