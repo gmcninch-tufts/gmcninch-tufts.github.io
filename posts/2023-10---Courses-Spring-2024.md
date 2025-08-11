@@ -14,7 +14,8 @@ I'm teaching two courses in Spring 2024, and I thought I'd post the course descr
 
   The first is [Math 087 *Mathematical Modeling*](/assets/images/2024-spring--Math087-MathematicalModelling.pdf).
   
-  I taught this course Fall 2020 and really enjoyed it. Looking forward to teaching it again!
+  I taught this course Fall 2020 and really enjoyed it. Looking
+  forward to teaching it again!
   
   As some practical information, for code use I'll mostly use *python*
   together with various scientific computing libraries (numpy, scipy,

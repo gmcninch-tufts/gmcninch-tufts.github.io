@@ -1,5 +1,5 @@
 ---
-title   : Special session on Linear Algebraic Groups
+title   : Special session on Linear Algebraic Groups at (AMS Sectional meeting at Tufts)
 date    : 2022-03-19
 tags    :
   - reductive-groups

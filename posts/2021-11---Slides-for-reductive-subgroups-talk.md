@@ -1,5 +1,5 @@
 ---
-title   : notes for a talk on "reductive subgroups over a local field"
+title   : Notes for a talk on "reductive subgroups over a local field"
 date    : 2021-11-20
 tags    :
   - local-fields
