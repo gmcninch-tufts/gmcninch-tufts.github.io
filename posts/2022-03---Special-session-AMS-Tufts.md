@@ -16,5 +16,5 @@ meeting](https://www.ams.org/meetings/sectional/2291_program.html)
 originally intended to be held at [Tufts
 University](http://www.tufts.edu).
 
-Thanks to all the speakers for some nice talks!
+Thanks to all the speakers for nice talks!
 
