@@ -13,4 +13,4 @@ at the following URLS:
 
 - [Math 065 Math Bridge to Higher Math](https://gmcninch.math.tufts.edu/2025-Fa-Math065)
 
-- [Math 245 Graduate Algebra I](https://gmcninch.math.tufts.edu/2025-Sp-Math245)
+- [Math 245 Graduate Algebra I](https://gmcninch.math.tufts.edu/2025-Fa-Math245)
